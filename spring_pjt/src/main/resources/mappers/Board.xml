@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.ssafit.model.dao.BoardDao">
+<!-- <resultMap type="BoardDto" id="boardMap"> -->
+<!-- <result column="user_pid" property="UserId" /> -->
+<!-- <result column="board_id" property="BoardId" /> -->
+<!-- <result column="board_title" property="BoardTitle" /> -->
+<!-- <result column="board_content" property="BoardContent" /> -->
+<!-- <result column="board_viewcnt" property="BoardViewCnt" /> -->
+<!-- <result column="board_like" property="BoardLike" /> -->
+<!-- <result column="board_deleted" property="BoardDeleted" /> -->
+<!-- </resultMap> -->
 
 
 	<select id="list" resultType="BoardDto">
@@ -11,18 +20,18 @@
 	<select id="search" parameterType="int" resultType="BoardDto">
 		SELECT *
 		FROM board
-		WHERE board_id = #{boardId}
+		WHERE board_id = ${boardId}
 	</select>
 
 	<insert id="create" parameterType="BoardDto">
-		INSERT INTO board (board_title board_content) 
-		VALUES(#{boardTitle}, #{boardContent})
+		INSERT INTO board (user_pid, board_title board_content) 
+		VALUES(${user_pid}, #{boardTitle}, #{boardContent})
 	</insert>
 
 	<update id="modify" parameterType="BoardDto">
 		UPDATE board
 		SET board_title = #{boardTitle}, board_content=#{boardContent}
-		WHERE board_id = #{boardId}
+		WHERE board_id = ${boardId}
 	</update>
 	
 	<update id="delete" parameterType="int">
