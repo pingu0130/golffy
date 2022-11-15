@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ssafit.model.dao.CmtDao">
+
+
+	<select id="list" resultType="BoardDto">
+		SELECT * FROM cmt
+	</select>
+
+	<insert id="create" parameterType="BoardDto">
+		INSERT INTO cmt (cmt) 
+		VALUES(#{cmt})
+	</insert>
+
+	<update id="modify" parameterType="BoardDto">
+		UPDATE cmt
+		SET cmt=#{cmt}
+		WHERE comment_id = #{id}
+	</update>
+	
+	<update id="delete" parameterType="int">
+		UPDATE cmt	
+		SET cmt_deleted=1
+		WHERE comment_id = #{id}
+	</update>
+	
+</mapper>
